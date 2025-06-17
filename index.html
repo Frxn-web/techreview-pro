@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechReview Pro - Ultimate Tech Reviews & Buying Guides</title>
+    <meta name="description" content="Professional tech reviews, buying guides, and comparisons for smartphones, laptops, gadgets and more. Make informed tech purchases with expert insights.">
+    <meta name="keywords" content="tech reviews, smartphone reviews, laptop reviews, gadget reviews, buying guides, technology, electronics">
+    <meta name="author" content="TechReview Pro">
+    
+    <!-- Essential for AdSense -->
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="TechReview Pro - Ultimate Tech Reviews">
+    <meta property="og:description" content="Professional tech reviews and buying guides">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+        }
+
+        .lang-switch {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: white;
+            color: #f5576c;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .rating {
+            color: #ffd700;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ad-space {
+            background: #e9ecef;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            color: #6c757d;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .widget h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .trending-list {
+            list-style: none;
+        }
+
+        .trending-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .trending-list li:last-child {
+            border-bottom: none;
+        }
+
+        .trending-list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .trending-list a:hover {
+            color: #667eea;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Language Toggle */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">TechReview Pro</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" data-lang="en">Reviews</a><a href="#" data-lang="es" style="display:none;">Reseñas</a></li>
+                    <li><a href="#" data-lang="en">Buying Guides</a><a href="#" data-lang="es" style="display:none;">Guías de Compra</a></li>
+                    <li><a href="#" data-lang="en">Comparisons</a><a href="#" data-lang="es" style="display:none;">Comparaciones</a></li>
+                    <li><a href="#" data-lang="en">About</a><a href="#" data-lang="es" style="display:none;">Acerca de</a></li>
+                    <li><a href="#" data-lang="en">Contact</a><a href="#" data-lang="es" style="display:none;">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="lang-switch" onclick="toggleLanguage()">EN/ES</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="lang-content active" id="hero-en">
+            <h1>Ultimate Tech Reviews</h1>
+            <p>Discover the best gadgets, smartphones, and tech products with our in-depth reviews and expert buying guides. Make informed decisions before you buy.</p>
+            <button class="cta-button">Explore Reviews</button>
+        </div>
+        <div class="lang-content" id="hero-es">
+            <h1>Reseñas Tech Definitivas</h1>
+            <p>Descubre los mejores gadgets, smartphones y productos tecnológicos con nuestras reseñas profundas y guías de compra expertas. Toma decisiones informadas antes de comprar.</p>
+            <button class="cta-button">Explorar Reseñas</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main>
+            <!-- Categories -->
+            <div class="categories">
+                <button class="category-btn active" data-lang="en">All</button>
+                <button class="category-btn active" data-lang="es" style="display:none;">Todos</button>
+                <button class="category-btn" data-lang="en">Smartphones</button>
+                <button class="category-btn" data-lang="es" style="display:none;">Smartphones</button>
+                <button class="category-btn" data-lang="en">Laptops</button>
+                <button class="category-btn" data-lang="es" style="display:none;">Laptops</button>
+                <button class="category-btn" data-lang="en">Headphones</button>
+                <button class="category-btn" data-lang="es" style="display:none;">Auriculares</button>
+                <button class="category-btn" data-lang="en">Gaming</button>
+                <button class="category-btn" data-lang="es" style="display:none;">Gaming</button>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image">📱</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">iPhone 15 Pro Max Complete Review</h2>
+                            <p class="article-excerpt">An in-depth look at Apple's latest flagship smartphone, covering performance, camera quality, battery life, and whether it's worth the upgrade.</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">iPhone 15 Pro Max Reseña Completa</h2>
+                            <p class="article-excerpt">Una mirada profunda al último smartphone insignia de Apple, cubriendo rendimiento, calidad de cámara, duración de batería y si vale la pena la actualización.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★☆ 4.5/5</span>
+                            <span>Dec 15, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-image">💻</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">MacBook Air M3 vs Dell XPS 13</h2>
+                            <p class="article-excerpt">Comprehensive comparison between Apple's MacBook Air M3 and Dell's XPS 13. Which laptop offers better value for professionals and students?</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">MacBook Air M3 vs Dell XPS 13</h2>
+                            <p class="article-excerpt">Comparación completa entre la MacBook Air M3 de Apple y la XPS 13 de Dell. ¿Qué laptop ofrece mejor valor para profesionales y estudiantes?</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★★ 4.8/5</span>
+                            <span>Dec 12, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-image">🎧</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">Sony WH-1000XM5 Long-term Review</h2>
+                            <p class="article-excerpt">After 6 months of daily use, here's our honest review of Sony's flagship noise-canceling headphones. Are they still the best?</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">Sony WH-1000XM5 Reseña a Largo Plazo</h2>
+                            <p class="article-excerpt">Después de 6 meses de uso diario, aquí está nuestra reseña honesta de los auriculares insignia con cancelación de ruido de Sony. ¿Siguen siendo los mejores?</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★☆ 4.6/5</span>
+                            <span>Dec 10, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card">
+                    <div class="article-image">🎮</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">Steam Deck OLED vs Nintendo Switch</h2>
+                            <p class="article-excerpt">The ultimate portable gaming showdown. We compare features, game libraries, performance, and value to help you choose the perfect handheld.</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">Steam Deck OLED vs Nintendo Switch</h2>
+                            <p class="article-excerpt">El enfrentamiento definitivo de gaming portátil. Comparamos características, bibliotecas de juegos, rendimiento y valor para ayudarte a elegir la portátil perfecta.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★☆ 4.4/5</span>
+                            <span>Dec 8, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="article-card">
+                    <div class="article-image">⌚</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">Apple Watch Series 9 Buyer's Guide</h2>
+                            <p class="article-excerpt">Everything you need to know before buying the Apple Watch Series 9. Features, pricing, and whether you should upgrade from older models.</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">Guía de Compra Apple Watch Series 9</h2>
+                            <p class="article-excerpt">Todo lo que necesitas saber antes de comprar el Apple Watch Series 9. Características, precios y si deberías actualizar desde modelos anteriores.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★★ 4.7/5</span>
+                            <span>Dec 5, 2024</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="article-card">
+                    <div class="article-image">📷</div>
+                    <div class="article-content">
+                        <div class="lang-content active">
+                            <h2 class="article-title">Best Budget Cameras Under $500</h2>
+                            <p class="article-excerpt">Discover the top affordable cameras that deliver professional-quality photos without breaking the bank. Perfect for beginners and enthusiasts.</p>
+                        </div>
+                        <div class="lang-content">
+                            <h2 class="article-title">Mejores Cámaras Económicas Bajo $500</h2>
+                            <p class="article-excerpt">Descubre las mejores cámaras asequibles que ofrecen fotos de calidad profesional sin romper el banco. Perfectas para principiantes y entusiastas.</p>
+                        </div>
+                        <div class="article-meta">
+                            <span class="rating">★★★★☆ 4.3/5</span>
+                            <span>Dec 3, 2024</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Ad Space -->
+            <div class="ad-space">
+                <div>
+                    <h3>Google AdSense</h3>
+                    <p>Advertisement Space<br>300 x 250</p>
+                </div>
+            </div>
+
+            <!-- Trending Widget -->
+            <div class="widget">
+                <div class="lang-content active">
+                    <h3>🔥 Trending Reviews</h3>
+                    <ul class="trending-list">
+                        <li><a href="#">iPhone 15 Pro Max vs Samsung Galaxy S24 Ultra</a></li>
+                        <li><a href="#">Best Gaming Laptops 2024</a></li>
+                        <li><a href="#">AirPods Pro 3 First Impressions</a></li>
+                        <li><a href="#">Budget Smartphones Under $300</a></li>
+                        <li><a href="#">Meta Quest 3 VR Headset Review</a></li>
+                    </ul>
+                </div>
+                <div class="lang-content">
+                    <h3>🔥 Reseñas Trending</h3>
+                    <ul class="trending-list">
+                        <li><a href="#">iPhone 15 Pro Max vs Samsung Galaxy S24 Ultra</a></li>
+                        <li><a href="#">Mejores Laptops Gaming 2024</a></li>
+                        <li><a href="#">AirPods Pro 3 Primeras Impresiones</a></li>
+                        <li><a href="#">Smartphones Económicos Bajo $300</a></li>
+                        <li><a href="#">Reseña Meta Quest 3 VR Headset</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Another Ad Space -->
+            <div class="ad-space">
+                <div>
+                    <h3>Google AdSense</h3>
+                    <p>Advertisement Space<br>300 x 600</p>
+                </div>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div class="widget">
+                <div class="lang-content active">
+                    <h3>📧 Stay Updated</h3>
+                    <p>Get the latest tech reviews and buying guides delivered to your inbox.</p>
+                    <input type="email" placeholder="Enter your email" style="width: 100%; padding: 0.5rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 5px;">
+                    <button style="width: 100%; padding: 0.5rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Subscribe</button>
+                </div>
+                <div class="lang-content">
+                    <h3>📧 Mantente Actualizado</h3>
+                    <p>Recibe las últimas reseñas tecnológicas y guías de compra en tu bandeja de entrada.</p>
+                    <input type="email" placeholder="Ingresa tu email" style="width: 100%; padding: 0.5rem; margin: 1rem 0; border: 1px solid #ddd; border-radius: 5px;">
+                    <button style="width: 100%; padding: 0.5rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Suscribirse</button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="lang-content active">
+                    <h3>About TechReview Pro</h3>
+                    <p>Your trusted source for honest tech reviews, buying guides, and comparisons. We help you make informed decisions about your next tech purchase.</p>
+                </div>
+                <div class="lang-content">
+                    <h3>Acerca de TechReview Pro</h3>
+                    <p>Tu fuente confiable para reseñas tecnológicas honestas, guías de compra y comparaciones. Te ayudamos a tomar decisiones informadas sobre tu próxima compra tecnológica.</p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="lang-content active">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Headphones</a></li>
+                        <li><a href="#">Gaming</a></li>
+                        <li><a href="#">Cameras</a></li>
+                        <li><a href="#">Wearables</a></li>
+                    </ul>
+                </div>
+                <div class="lang-content">
+                    <h3>Categorías</h3>
+                    <ul>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Auriculares</a></li>
+                        <li><a href="#">Gaming</a></li>
+                        <li><a href="#">Cámaras</a></li>
+                        <li><a href="#">Wearables</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="lang-content active">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="/cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="/disclaimer.html">Disclaimer</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="lang-content">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="/privacy-policy.html">Política de Privacidad</a></li>
+                        <li><a href="/terms-of-service.html">Términos de Servicio</a></li>
+                        <li><a href="/cookie-policy.html">Política de Cookies</a></li>
+                        <li><a href="/disclaimer.html">Disclaimer</a></li>
+                        <li><a href="/contact.html">Contáctanos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="lang-content active">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">RSS Feed</a></li>
+                    </ul>
+                </div>
+                <div class="lang-content">
+                    <h3>Conectar</h3>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">RSS Feed</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TechReview Pro. All rights reserved. | Designed for optimal monetization with Google AdSense</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'en' ? 'es' : 'en';
+            currentLang = newLang;
+            
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show content for current language
+            document.querySelectorAll(`[data-lang="${currentLang}"]`).forEach(el => {
+                el.style.display = currentLang === 'en' ? 'inline' : 'none';
+            });
+            
+            document.querySelectorAll(`[data-lang="${newLang}"]`).forEach(el => {
+                el.style.display = newLang === 'en' ? 'inline' : 'none';
+            });
+            
+            // Toggle lang-content divs
+            if (currentLang === 'en') {
+                document.querySelectorAll('.lang-content:first-child').forEach(el => {
+                    el.classList.add('active');
+                });
+            } else {
+                document.querySelectorAll('.lang-content:last-child').forEach(el => {
+                    el.classList.add('active');
+                });
+            }
+        }
+
+        // Category filter functionality
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Here you would filter articles based on category
+                // For now, it's just visual feedback
+            });
+        });
+
+        // Smooth scrolling for CTA button
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.container').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Newsletter subscription (placeholder)
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Subscribe') || btn.textContent.includes('Suscribirse')) {
+                btn.addEventListener('click', function() {
+                    const email = this.previousElementSibling.value;
+                    if (email) {
+                        alert(currentLang === 'en' ? 'Thank you for subscribing!' : '¡Gracias por suscribirte!');
+                        this.previousElementSibling.value = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
